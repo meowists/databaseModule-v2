@@ -28,16 +28,21 @@ class database  {
         this.push()
     }
 
+    findEntryFromIndex(index) {
+        return this.data[index]
+    }
+
+    removeEntry(entry) {
+        this.data.splice(this.data.indexOf(entry), 1)
+        this.push()
+    }
+
     push() {
         fs.writeFileSync(`./databases/${this.id}.json`, JSON.stringify(this.data, null, 4))
     }
 
     pull() {
         this.data = JSON.parse(fs.readFileSync(`./databases/${this.id}.json`))
-    }
-
-    findEntryFromIndex(index) {
-        return this.data[index]
     }
 }
 
